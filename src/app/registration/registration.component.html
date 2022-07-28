@@ -1,0 +1,47 @@
+<form [formGroup]="form" (ngSubmit)="registration()">
+<div class="container">
+    <section class="section ">
+        <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <input class="input is-large" type="text" placeholder="Full Name" formControlName="name">
+            </div>
+          </div>
+        <div class="field">
+            <label class="label">eMail (login)</label>
+            <div class="control">
+              <input class="input is-large" type="text" placeholder="email" formControlName="email">
+            </div>
+          </div>
+        <div class="field">
+            <label class="label">Phone</label>
+            <div class="control">
+              <input class="input is-large" type="tel" placeholder="Phone" formControlName="phone">
+            </div>
+          </div>
+        <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input class="input is-large" type="password" placeholder="Password" formControlName="password">
+            </div>
+          </div>
+        <div class="field">
+            <label class="label">Repeat Password</label>
+            <div class="control">
+              <input class="input is-large" type="password" placeholder="Password" formControlName="repassword">
+            </div>
+          </div>
+          
+
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-link is-large" type="submit">Submit</button>
+            </div>
+            <div class="control">
+              <a routerLink="/"><button class="button is-link is-light is-large">Cancel</button></a>
+            </div>
+          </div>      
+    </section>
+  </div>
+
+</form>

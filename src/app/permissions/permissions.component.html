@@ -1,0 +1,44 @@
+<div class="container">
+
+    <section class="section" >
+        <div class="notification is-primary">
+            Please allow Notification and location tracking for correct working this app
+        </div>
+        <div class="columns permissions">
+            <div class="column"><button class="button is-light is-warning is-middle"
+                    *ngIf="!locationAllow; else locationGranted" (click)="allowLocation()">Allow GPS</button></div>
+            <div class="column"><button class="button is-light is-warning is-middle"
+                    *ngIf="!notificationAllow; else notificationGranted" (click)="allowNotification()">Allow Notification</button>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+<ng-template #locationGranted>
+
+    <span class="tag is-success is-light is-large">
+        <span class="material-symbols-outlined">
+            where_to_vote
+        </span> Location traking Granted
+    </span>
+
+
+</ng-template>
+
+<ng-template #notificationGranted>
+    <span class="tag is-success is-light is-large">
+        <span class="material-symbols-outlined">
+            notifications
+        </span> Notification Granted
+    </span>
+</ng-template>
+
+<ng-template #checking>
+    <div class="checkingPermmisions">
+        <h2>Checking Permmisions</h2>
+        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    
+    </div>
+  </ng-template>
