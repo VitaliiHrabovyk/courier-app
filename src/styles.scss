@@ -10,12 +10,12 @@ html, body {
     
 }
 
+
+
 .container {
-    margin: 10px auto;
-    width: 95%;
-    height: 95%;
+    width: 100%;
     background-color: aquamarine;
-    box-shadow: 0 0 10px;
+    min-height: 100vh;
 }
 
 .lds-roller {

@@ -22,11 +22,12 @@ export class PermissionsComponent implements OnInit {
   checkingPermmisions = true;
 
   ngOnInit(): void {
+    console.log("notification permission status is", Notification.permission);
+    
     if(Notification.permission === "granted"){
       this.userService.getUserByEmail(localStorage.getItem('email')).subscribe(res=>{
         if(res.sub) {
           console.log(res);
-          
           console.log("sub true");
           this.swPush.requestSubscription(
             {serverPublicKey: this.VAPID_PUBLIC_KEY})
@@ -38,31 +39,35 @@ export class PermissionsComponent implements OnInit {
               if(sub.endpoint === res.sub.endpoint){
                 
                 this.notificationAllow = true;
+                this.isPermissionsGranted()
               }
             })
 
         }else {
           console.log("Sub false");
-
         }
         this.checkingPermmisions = false;
+       
       })
     } else {this.checkingPermmisions = false}
 
     navigator.permissions.query({name:'geolocation'}).then((permissionStatus)=> {
-      console.log('geolocation permission status is ', permissionStatus.state);
       if(permissionStatus.state === "granted"){
+        console.log('geolocation permission status is ', permissionStatus.state);
         this.locationAllow = true;
-      }
-    });
+      } else console.log("permission not granted");
+      
+    })
 
 
-    this.isPermissionsGranted()
+    
+    
+    
 
   }
 
   allowNotification() {
-    
+    this.swPush.unsubscribe;
     this.swPush.requestSubscription({
     serverPublicKey: this.VAPID_PUBLIC_KEY
     })
@@ -80,7 +85,13 @@ allowLocation() {
   navigator.geolocation.getCurrentPosition(position => {
     console.log(position);
     navigator.geolocation.getCurrentPosition(position => {
-      this.userService.addPosition(position, localStorage.getItem("email"))      
+      console.log(position.coords);
+      let position_ = {
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
+        timeStamp: position.timestamp,
+      }
+      this.userService.addPosition(position_, localStorage.getItem("email"))      
     })
 
     this.locationAllow = true;
@@ -93,8 +104,10 @@ allowLocation() {
 
 isPermissionsGranted(){
   if (this.notificationAllow == true && this.locationAllow == true){
+    console.log("Permissions Granted");
     this.router.navigate(["main"])
-  }
+  } else console.log("Permissions NOT Granted");
+  
 }
 
 

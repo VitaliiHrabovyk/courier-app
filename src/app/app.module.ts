@@ -12,6 +12,7 @@ import { MainComponent } from './main/main.component';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { TasksComponent } from './tasks/tasks.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { environment } from '../environments/environment';
     StartComponent,
     MainComponent,
     PermissionsComponent,
+    TasksComponent,
   ],
   imports: [
     BrowserModule,

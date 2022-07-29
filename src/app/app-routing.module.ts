@@ -6,6 +6,7 @@ import { MainComponent } from './main/main.component';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { StartComponent } from './start/start.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
   {path: "",  component: StartComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: "reg",  component: RegistrationComponent},
   {path: "main",  component: MainComponent},
   {path: "permissions",  component: PermissionsComponent},
+  {path: "tasks",  component: TasksComponent},
 ];
 
 @NgModule({

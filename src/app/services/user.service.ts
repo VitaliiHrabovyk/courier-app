@@ -47,10 +47,10 @@ export class UserService {
   }
 
   addSubscription(sub:any, email:any){
-    this.getUserId(email).subscribe(res => {
-      console.log(res);
+    this.getUserId(email).subscribe(UserId => {
+      console.log(UserId);
       
-      this.http.patch(`https://courier-f2f1d-default-rtdb.europe-west1.firebasedatabase.app/users/${res}/sub.json`, sub).subscribe(res=>{
+      this.http.patch(`https://courier-f2f1d-default-rtdb.europe-west1.firebasedatabase.app/users/${UserId}/sub.json`, sub).subscribe(res=>{
         console.log("sub push succses");
         
       })
@@ -60,9 +60,8 @@ export class UserService {
   addPosition(position:any, email:any){
     this.getUserId(email).subscribe(userId => {
       console.log(userId);
-      this.http.patch(`https://courier-f2f1d-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/position.json`, position).subscribe(res=>{
+      this.http.patch(`https://courier-f2f1d-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/pos.json`, position).subscribe(res=>{
         console.log(res);
-        
       })
     })
   } 

@@ -1,6 +1,4 @@
-<div class="container" >
-  
-    <section class="section ">
+
       <div class="columns permissions">
         <div class="column" ><button class="button is-light is-warning is-middle"(click)="testNotification()">Send test Notification</button></div>
         <div class="column" ><button class="button is-light is-warning is-middle"(click)="authService.logOut()">LogOut</button></div>
@@ -21,35 +19,71 @@
                     <br>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
                   </p>
+
                 </div>
-                <nav class="level is-mobile">
-                  <div class="level-left">
-                    <a class="level-item" aria-label="reply">
-                      <span class="icon is-small">
-                        <i class="fas fa-reply" aria-hidden="true"></i>
-                      </span>
-                    </a>
-                    <a class="level-item" aria-label="retweet">
-                      <span class="icon is-small">
-                        <i class="fas fa-retweet" aria-hidden="true"></i>
-                      </span>
-                    </a>
-                    <a class="level-item" aria-label="like">
-                      <span class="icon is-small">
-                        <i class="fas fa-heart" aria-hidden="true"></i>
-                      </span>
-                    </a>
-                  </div>
-                </nav>
               </div>
             </article>
-          </div>  
-        </div>
-    </section>
+            <hr>
+            <h2 class="title" style="text-align: center;">User data</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th><abbr title="Position">Data</abbr></th>
+                  <th>Value</th>
+                </tr>
+              </thead>
 
-  </div>
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <td>{{currentUser.name}}</td>
+                </tr>            
+                <tr>
+                  <th>Email</th>
+                  <td>{{currentUser.email}}</td>
+                </tr>            
+                <tr>
+                  <th>Status</th>
+                  <td>{{currentUser.status}}</td>
+                </tr>            
+                <tr>
+                  <th>Phone</th>
+                  <td>{{currentUser.phone}}</td>
+                </tr>            
+                <tr>
+                  <th>Counts Of completed Tasks</th>
+                  <td>{{currentUser.countsOfTasks || "No completed tasks for now"}}</td>
+                </tr>            
+                <tr>
+                  <th>Notification status</th>
+                  <td><span class="material-symbols-outlined" style="color: green;" *ngIf="currentUser.sub; else warningNotification" >task_alt</span>
+                  </td>
+                </tr>            
+                <tr>
+                  <th>Position traking status</th>
+                  <td><span class="material-symbols-outlined" style="color: green;" *ngIf="currentUser.pos; else warningPosition" >task_alt</span></td>
+                </tr> 
+                <tr>
+                  <th>Current position</th>
+                  <td>{{currentUser.pos | json}}</td>
+                </tr>            
+           
+              </tbody>
+            </table>
+
+          </div>   
+        </div>
 
 
 <ng-template #loading>
   <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</ng-template>
+
+<ng-template #warningNotification>
+  <span class="material-symbols-outlined" style="color: red;">warning</span>
+  <button class="button is-light is-warning is-middle allow"(click)="allowNotification()">Allow Notification</button>                   
+</ng-template>
+<ng-template #warningPosition>
+  <span class="material-symbols-outlined" style="color: red;">warning</span>
+  <button class="button is-light is-warning is-middle allow" >Allow Notification</button>                   
 </ng-template>
